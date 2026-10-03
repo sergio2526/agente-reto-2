@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro de Contratos</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+</head>
+<body>
+  <header class="barra">
+    <div class="marca">
+      <strong>Registro de Contratos Vigentes</strong>
+      <span id="modelo" class="insignia">conectando…</span>
+    </div>
+    <nav class="acciones">
+      <button type="button" data-archivo="alertas.md">Alertas</button>
+      <button type="button" data-archivo="maestro-contratos.csv">Maestro</button>
+      <button type="button" data-archivo="historial.jsonl">Historial</button>
+      <button type="button" data-archivo="log.jsonl">Log</button>
+      <button type="button" id="nueva">Nueva sesión</button>
+      <button type="button" id="reiniciar" class="peligro" title="Borra out/ y vuelve al estado inicial del buzón">Reiniciar demo</button>
+    </nav>
+  </header>
+
+  <main class="contenido">
+    <section id="chat" class="chat" aria-live="polite">
+      <div id="vacio" class="vacio">
+        <p>Soy el punto único de recepción del buzón de contratos. Leo los correos, extraigo los datos, detecto duplicados y otrosíes, archivo y alimento el maestro. Lo dudoso te lo pregunto antes de registrarlo.</p>
+        <button type="button" id="ejemplo" class="sugerencia">Procesa el buzón de contratos con fecha de hoy 2026-09-03. Registra lo que esté limpio, muéstrame lo que requiere revisión campo por campo y termina con el reporte de alertas. No registres nada dudoso sin preguntarme.</button>
+      </div>
+    </section>
+
+    <aside id="panel" class="panel" hidden>
+      <div class="panel-cabecera">
+        <strong id="panel-titulo"></strong>
+        <button type="button" id="panel-cerrar" aria-label="Cerrar">✕</button>
+      </div>
+      <div id="panel-cuerpo" class="panel-cuerpo"></div>
+    </aside>
+  </main>
+
+  <footer class="pie">
+    <div id="confirmacion" class="confirmacion" hidden>
+      <span>⚠️ El agente espera tu confirmación para: <strong id="pendientes"></strong></span>
+    </div>
+    <div id="pensando" class="pensando" hidden><span class="punto"></span><span id="estado">Pensando…</span></div>
+    <form id="formulario" class="formulario">
+      <textarea id="entrada" rows="2" placeholder="Escribe un mensaje… (Enter envía, Shift+Enter nueva línea)" required></textarea>
+      <button type="submit" id="enviar">Enviar</button>
+    </form>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
